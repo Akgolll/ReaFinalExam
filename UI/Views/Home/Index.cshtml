@@ -1,0 +1,70 @@
+﻿@using EntityLayer
+@model List<tasks>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row">
+    
+   <div class="col-4 mt-4 border-right">
+       <h2>Oluşturldu</h2>
+       @foreach (var item in Model)
+      {
+         @if (item.Status == "Oluşturuldu")
+       {
+               
+            <div class="card bg-info mt-2">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">Görev: @item.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Görev Sahibi: @item.Owner</h6>
+                    <p class="card-text">Görev Açıklaması: @item.Description</p>
+                    <hr>
+                    <a class="btn btn-outline-success" href="/Home/durum/@item.Id">Güncelle</a>
+                </div>
+            </div>
+       
+       }  
+      }
+   </div>
+   <div class="col-4 mt-4 border-right">
+       <h2>Süreçte</h2>
+       @foreach (var item in Model)
+      {
+         @if (item.Status == "Süreçte")
+       {
+               
+            <div class="card bg-info mt-2">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">Görev: @item.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Görev Sahibi: @item.Owner</h6>
+                    <p class="card-text">Görev Açıklaması: @item.Description</p>
+                    <hr>
+                    
+                    <a class="btn btn-outline-success" href="/Home/durum/@item.Id">Güncelle</a>
+                </div>
+            </div>
+       
+       }  
+      }
+   </div>
+   <div class="col-4 mt-4 mt-2">
+       <h2>Yapıldı</h2>
+       @foreach (var item in Model)
+      {
+         @if (item.Status == "Yapıldı")
+       {
+               
+            <div class="card bg-info mt-2">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">Görev: @item.Title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Görev Sahibi: @item.Owner</h6>
+                    <p class="card-text">Görev Açıklaması: @item.Description</p>
+                    <hr>
+                    <button class="btn btn-danger">Görev Durumu: @item.Status</button>
+                </div>
+            </div>
+       
+       }  
+      }
+   </div>  
+
+</div>

@@ -1,0 +1,73 @@
+﻿@using EntityLayer
+@model List<tasks>
+
+    @{
+        ViewData["Title"] = "Ana Sayfa";
+    }
+<style>
+    #ust{
+        margin-top:10%;
+    }
+</style>
+
+<div class="container mt-4" id="ust">
+    <div class="row text-center">
+        <div class="col" id="ust">
+            <h2>Görevler Listesi</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+            <a href="/Task/Add" class="btn btn-outline-warning mb-2">Yeni Görev Ekle</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+            <table class=" table table-hover">
+                <tr>
+                  <th>Görev No</th>
+                  <th>Görev Başlığı</th>
+                  <th>Görev Açıklaması</th>
+                  <th>Görev Sahibi</th>
+                  <th>Durumu</th>
+                  <th>Düzenle</th>
+                </tr>
+                <tbody class="table-group-divider">
+
+                    @foreach (var tags in Model)
+                   {
+                    <tr>
+                        <td>@tags.Id</td>   
+                        <td>@tags.Title</td>
+                        <td>@tags.Description</td>
+                        <td>@tags.Owner</td>
+                        <td>@tags.Status</td>
+                    @if (@tags.Status == "Oluşturuldu")
+                    {
+                        <td>
+                            <a class="btn btn-success" href="/Task/Update/@tags.Id">Güncelle</a>
+                            <a class="btn btn-danger" href="/Task/Delete/@tags.Id">Sil</a>
+                        </td>
+                    }
+                    else
+                            {
+                                    <td>
+                            <a class="btn btn-outline-success disabled" href="/Task/Update/@tags.Id">Güncelle</a>
+                            <a class="btn btn-outline-danger disabled" href="/Task/Delete/@tags.Id">Sil</a>
+                        </td>
+                            }
+                       
+                    </tr>
+
+                 
+                   }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

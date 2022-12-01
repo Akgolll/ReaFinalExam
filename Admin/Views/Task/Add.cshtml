@@ -1,0 +1,48 @@
+﻿@using EntityLayer
+@model tasks
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+     #ust{
+         margin-top:10%;
+     }
+</style>
+
+<div class="container" id=ust>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+            <h2 class="h2">Yeni Görev Ekle</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+            @using (Html.BeginForm("Add", "Task", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.Label("Görevin Başlığı")<br>
+                    @Html.TextBoxFor(x=>x.Title)
+                    @Html.ValidationMessageFor(x=>x.Title)
+                    <br>
+                    @Html.Label("Görevin İçeriği")<br>
+                    @Html.TextAreaFor(x=>x.Description)
+                    @Html.ValidationMessageFor(x=>x.Description)
+                    <br>
+                    @Html.Label("Görevin Sahibi")<br>
+                    @Html.TextBoxFor(x=>x.Owner)
+                    <br>
+                 
+                    <br><br />
+                    <button class="btn btn-outline-success">Ekle</button>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
